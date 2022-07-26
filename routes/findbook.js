@@ -48,7 +48,7 @@ ${genreParam}\
 
       if (!jsonData.items || Object.keys(jsonData.items).length < 1)
       {
-        return res.status(404).send(`Could not find any books with the query: ${JSON.stringify(req.query)}`);
+        return res.send(`Could not find any books with the query: ${JSON.stringify(req.query)}`);
       }
 
       const topResult = jsonData.items[0].volumeInfo;

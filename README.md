@@ -1,5 +1,19 @@
 # bookservice
- 
+
+# Setup
+
+Install Node.js and NPM.
+
+Navigate to project directory in a terminal.
+
+Run:
+>npm install
+
+Start service using:
+>npm start YOUR_GOOGLE_API_KEY
+
+Replace YOUR_GOOGLE_API_KEY with key obtained from Google.
+
 # GET request
 
 The request should pass at least one of the parameters (title, author, genre) in the url to /findbook.

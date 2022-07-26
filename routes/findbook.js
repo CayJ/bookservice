@@ -25,13 +25,15 @@ router.get('/', function(req, res, next) {
 
   const titleParam = title ? `intitle:${title}` : '';
   const authorParam = author ? (title ? '+' : '')+`inauthor:${author}` : '';
-  const genreParam = genre ? (title || author ? '+' : '')+`insubject:${genre}` : '';
+  const genreParam = genre ? (title || author ? '+' : '')+`subject:${genre}` : '';
 
   let requestUrl = `https://www.googleapis.com/books/v1/volumes?q=\
 ${titleParam}\
 ${authorParam}\
 ${genreParam}\
 &key=${apiKey}`;
+
+  console.log(`API url: ${requestUrl}`);
 
   https.get(requestUrl, (httpsRes) => {
     let body = '';
@@ -52,7 +54,6 @@ ${genreParam}\
       }
 
       const topResult = jsonData.items[0].volumeInfo;
-      console.log(JSON.stringify(requestUrl));
       const resTitle = topResult.title;
       const resAuthors = topResult.authors;
       const resCategories = topResult.categories;

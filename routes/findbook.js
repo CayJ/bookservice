@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const https = require('https');
 
-//console.log('arguments: ' + process.argv.slice(2));
-
 const apiKey = process.argv.slice(2)[0];
 
 if (!apiKey)
@@ -15,7 +13,6 @@ if (!apiKey)
 
 console.log(`Service started using api key: ${apiKey}`);
 
-/* GET top-resulting book. */
 router.get('/', function(req, res, next) {
   const title = req.query.title;
   const author = req.query.author;
@@ -55,14 +52,17 @@ ${genreParam}\
       }
 
       const topResult = jsonData.items[0].volumeInfo;
+      console.log(JSON.stringify(requestUrl));
       const resTitle = topResult.title;
       const resAuthors = topResult.authors;
+      const resCategories = topResult.categories;
       const resISBN = topResult.industryIdentifiers;
       const resAverageRating = topResult.averageRating;
 
       let jsonResponse = {
         "title" : resTitle,
         "authors" : resAuthors,
+        "categories" : resCategories,
         "isbn" : resISBN,
         "averageRating" : resAverageRating
       };
